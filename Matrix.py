@@ -45,46 +45,10 @@ rowNum = [-1, 0, 1, -1, -1, 1, 0, 1]
 colNum = [0, -1, 1, -1, 1, -1, 1, 0]
 # Function to find the shortest path between
 # a given source cell to a destination cell.
+# Will post implementation of this method on Monday 02/08/2021 as there is a live assesment going on.
 def BFS(mat, src: Point, dest: Point, userInputObj:UserInput):
 
-    # check source and destination cell
-    # of the matrix have value S and T
-    if mat[src.x][src.y].capitalize()!='S' or mat[dest.x][dest.y].capitalize()!='T':
-        return -1
-    # make the each not visited = false
-    visited = [[False for i in range(userInputObj.noOfColumns)]
-                       for j in range(userInputObj.noOfRows)]
-
-
-    # Mark the source cell as visited
-    visited[src.x][src.y] = True
-    # Create a queue for BFS
-    q = deque()
-    # Distance of source cell is 0
-    s = queueNode(src,0)
-    q.append(s) #  Enqueue source cell
-    # Do a BFS starting from source cell
-    while q:
-        curr = q.popleft() # Dequeue the front cell
-        # If we have reached the destination cell,
-        # we are done
-        pt = curr.pt
-        if pt.x == dest.x and pt.y == dest.y:
-            return curr.dist
-
-        # Otherwise enqueue its adjacent cells
-        for i in range(8):
-            row = pt.x + rowNum[i]
-            col = pt.y + colNum[i]
-            # if adjacent cell is valid, has path
-            # and not visited yet, enqueue it.
-            if (isValid(row,col,userInputObj) and
-               (mat[row][col] == '.' or mat[row][col].capitalize() == 'T') and
-                not visited[row][col]):
-                visited[row][col] = True
-                Adjcell = queueNode(Point(row,col),
-                                    curr.dist+1)
-                q.append(Adjcell)
+   
 
     # Return -1 if destination cannot be reached
     return -1
